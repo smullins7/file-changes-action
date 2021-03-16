@@ -1,4 +1,4 @@
-import {setOutput as coreSetOutput, debug as coreDebug} from '@actions/core'
+import {setOutput as coreSetOutput, debug as coreDebug, info as coreInfo} from '@actions/core'
 import {writeFileSync} from 'fs'
 import {ChangedFiles} from 'typings/ChangedFiles'
 import {GitHubFile} from 'typings/GitHubFile'
@@ -45,6 +45,12 @@ export function sortChangedFiles(files: GitHubFile[]): ChangedFiles {
 }
 
 export function filterChangedFiles(files: GitHubFile[], paths: string[], ignorePaths: string[]): GitHubFile[] {
+  coreInfo("the files:")
+  coreInfo(files.join(" "))
+  coreInfo("the paths:")
+  coreInfo(paths.join(" "))
+  coreInfo("the ignorePaths:")
+  coreInfo(ignorePaths.join(" "))
   return files.filter((file: GitHubFile, index: number, array: GitHubFile[]): boolean => paths.some(path => file.filename.match(path)) && !ignorePaths.some(ignorePath => file.filename.match(ignorePath)))
 }
 
