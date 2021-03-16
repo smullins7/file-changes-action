@@ -45,7 +45,8 @@ export function sortChangedFiles(files: GitHubFile[]): ChangedFiles {
 }
 
 export function filterChangedFiles(files: GitHubFile[], paths: string[], ignorePaths: string[]): GitHubFile[] {
-  return files.filter((file: GitHubFile, index: number, array: GitHubFile[]): boolean => paths.some(path => file.filename.match(path)) && !ignorePaths.some(ignorePath => file.filename.match(ignorePath)))
+  return files
+  //return files.filter((file: GitHubFile, index: number, array: GitHubFile[]): boolean => paths.some(path => file.filename.match(path)) && !ignorePaths.some(ignorePath => file.filename.match(ignorePath)))
 }
 
 /**
