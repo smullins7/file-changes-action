@@ -24,7 +24,7 @@ export async function run(): Promise<void> {
       inferred
     )
 
-    const filteredFilesArray = await filterChangedFiles(changedFilesArray, inputs.paths, inputs.ignorePaths)
+    const filteredFilesArray = await filterChangedFiles(changedFilesArray, inputs.paths.split(" "), inputs.ignorePaths.split(" "))
     // sort changed files
     const changedFiles = sortChangedFiles(filteredFilesArray)
     Object.keys(changedFiles).forEach(key => {

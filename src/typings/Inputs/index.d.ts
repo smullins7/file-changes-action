@@ -4,10 +4,10 @@ export interface Inputs {
   pushBefore: string
   pushAfter: string
   prNumber: number
-  paths: [string]
-  ignorePaths: [string]
+  paths: string
+  ignorePaths: string
   output: string
   fileOutput: string
   event: string
-  [key: string]: string | number | [string]
+  [key: string]: string | number
 }
