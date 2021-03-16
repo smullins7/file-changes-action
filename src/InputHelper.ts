@@ -47,6 +47,8 @@ export function getInputs(): Inputs {
         coreGetInput('pushAfter') ||
         (context.payload.after === undefined ? false : context.payload.after),
       prNumber,
+      paths:  coreGetInput('paths') || '.',
+      ignorePaths:  coreGetInput('ignorePaths') || '',
       output: coreGetInput('output') || ' ',
       fileOutput: coreGetInput('fileOutput') || ' ',
       event: context.eventName
