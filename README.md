@@ -43,6 +43,14 @@ _Optional_  - `string` - pass in a specific sha to compare to as an after, requi
 
 _Optional_  - `string` - pass in a specific PR number to get file changes from.
 
+### paths
+
+_Optional_  - `list` - If specified (as a list of glob patterns), only files matching the specified patterns will be included
+
+### ignorePaths
+
+_Optional_  - `list` - If specified (as a list of glob patterns), only files not matching the specified patterns will be included
+
 ## Outputs
 
 ### files

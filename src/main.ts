@@ -1,8 +1,9 @@
 import {setFailed as coreSetFailed} from '@actions/core'
 import {getInputs, inferInput} from './InputHelper'
-import {writeOutput, writeFiles, sortChangedFiles} from './FilesHelper'
+import {writeOutput, writeFiles, sortChangedFiles, filterChangedFiles} from './FilesHelper'
 import {getChangedFiles, initClient} from './GithubHelper'
 import {errorMessage} from './UtilsHelper'
+import {GitHubFile} from "typings/GitHubFile";
 // figure out if it is a PR or Push
 export async function run(): Promise<void> {
   try {
@@ -22,8 +23,10 @@ export async function run(): Promise<void> {
       inputs.githubRepo,
       inferred
     )
+
+    const filteredFilesArray = await filterChangedFiles(changedFilesArray, inputs.paths, inputs.ignorePaths)
     // sort changed files
-    const changedFiles = sortChangedFiles(changedFilesArray)
+    const changedFiles = sortChangedFiles(filteredFilesArray)
     Object.keys(changedFiles).forEach(key => {
       // write file output
       writeFiles(inputs.fileOutput, key, changedFiles[key])
